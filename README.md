@@ -13,9 +13,10 @@ Ensure you have Node.js (v14 or later), MariaDB (running locally), and Git insta
 ## Installation
 
 Clone the repository and install dependencies:
-git clone https://github.com/LampikoskiO/www-koulu.git
-cd www-koulu
-npm install
+
+	git clone https://github.com/LampikoskiO/www-koulu.git
+	cd www-koulu
+	npm install
 
 ## Create a .env file in the project root with these variables:
 
