@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import sequelize from "./db.js";
+import sequelize from "./db.js"; // Your Sequelize setup file
 import catRoutes from "./routes/catRoutes.js";
 
 dotenv.config();
@@ -11,31 +11,29 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// For ES6 modules, compute __dirname:
+// For ES6 modules, define __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware to parse JSON requests
+// Middleware to parse JSON and serve static files
 app.use(express.json());
-
-// Serve static files from "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// Use cat routes under the "/api" prefix
+// Use API routes under "/api"
 app.use("/api", catRoutes);
 
-// Basic route for testing
+// Basic route to check if server is running
 app.get("/", (req, res) => {
-  res.send("Welcome to the Cat Blog using MariaDB!");
+  res.send("Welcome to the Cat Blog!");
 });
 
-// Sync database and start the server
-sequelize.sync().then(() => {
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Synchronize database and start the server
+sequelize.sync()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error syncing the database:", error);
   });
-}).catch((error) => {
-  console.error("Unable to sync database:", error);
-});
-
-export default app;
