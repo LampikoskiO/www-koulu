@@ -19,12 +19,12 @@ npm install
 
 ## Create a .env file in the project root with these variables:
 
-PORT=3000
-DB_HOST=localhost
-DB_NAME=catblog
-DB_USER=your_db_username
-DB_PASS=your_db_password
-DB_PORT=3306
+	PORT=3000
+	DB_HOST=localhost
+	DB_NAME=catblog
+	DB_USER=your_db_username
+	DB_PASS=your_db_password
+	DB_PORT=3306
 
 ## Setup your local mariaDB:
 CREATE DATABASE catblog;
