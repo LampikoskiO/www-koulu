@@ -40,3 +40,19 @@ sequelize.sync()
   .catch((error) => {
     console.error("Error syncing the database:", error);
   });
+
+  app.get("/", (req, res) => {
+    res.render("index");
+  });
+  
+  app.get("/about", (req, res) => {
+    res.render("about");
+  });
+  
+  app.get("/photos", (req, res) => {
+    res.render("photos"); // Optional: Pass in task data here
+  });
+  
+  app.get("/dev", (req, res) => {
+    res.render("dev");
+  });
