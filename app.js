@@ -8,15 +8,15 @@ import catRoutes from "./routes/catRoutes.js";
 
 dotenv.config();
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
 const app = express();
 const port = process.env.PORT || 3000;
 
 // For ES6 modules, define __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // Middleware to parse JSON and serve static files
 app.use(express.json());
