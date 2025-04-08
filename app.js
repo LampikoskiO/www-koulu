@@ -5,6 +5,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sequelize from "./db.js"; // Your Sequelize setup file
 import catRoutes from "./routes/catRoutes.js";
+import errorRoutes from "./router/errorRoutes.js";
+import { pageNotFoundError, internalServerError } from "./controllers/errorController.js";
 
 dotenv.config();
 
@@ -29,6 +31,11 @@ app.use("/api", catRoutes);
 app.get("/", (req, res) => {
   res.send("Welcome to the Cat Blog!");
 });
+
+// Error handling routes
+app.use(errorRoutes);
+app.use(pageNotFoundError);
+app.use(internalServerError);
 
 // Synchronize database and start the server
 sequelize.sync()
