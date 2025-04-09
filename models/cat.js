@@ -16,7 +16,7 @@ const Cat = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  {
+  {  
     timestamps: true, // adds createdAt and updatedAt
   }
 );

@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sequelize from "./db.js"; // Your Sequelize setup file
 import catRoutes from "./routes/catRoutes.js";
-import errorRoutes from "./router/errorRoutes.js";
+import errorRoutes from "./routes/errorRoutes.js";
 import { pageNotFoundError, internalServerError } from "./controllers/errorController.js";
 
 dotenv.config();
