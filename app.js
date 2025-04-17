@@ -7,7 +7,9 @@ import sequelize from "./db.js"; // Your Sequelize setup file
 import catRoutes from "./routes/catRoutes.js";
 import errorRoutes from "./routes/errorRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import homeRoutes from "./routes/homeRoutes.js";
 import methodOverride from "method-override";
+import session from 'express-session';
 import { pageNotFoundError, internalServerError } from "./controllers/errorController.js";
 
 dotenv.config();
@@ -27,14 +29,22 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware for sessions
+app.use(session({
+  secret: "kissathakeelintuja",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}));
+
 // For PUT and DELETE requests
 app.use(methodOverride('_method'));
 
 // Use API routes under "/api"
 app.use("/api", catRoutes);
 
-// Use user routes under "/users"
 app.use("/users", userRoutes);
+app.use("/", homeRoutes);
 
 // Basic route to check if server is running
 app.get("/", (req, res) => {
