@@ -90,7 +90,7 @@ export const loginUser = async (req, res) => {
               error: "Invalid email or password" });
         }
 
-        req.session.user = { id: user.id, email: user.email };
+        req.session.user = { id: user.id, name: user.name, email: user.email };
         res.redirect("/");
     } catch (error) {
         console.error("Login error:", error);
