@@ -74,3 +74,37 @@ export const deleteUser = async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
     };
+
+export const renderLoginPage = (req, res) => {
+    res.render("users/login", { title: "Login" });
+};
+
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ where: { email } });
+
+        if (!user || user.password !== password) {
+            return res.status(401).render("users/login", { title: "Login", 
+              error: "Invalid email or password" });
+        }
+
+        req.session.user = { id: user.id, email: user.email };
+        res.redirect("/");
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).render("users/login", { title: "Login", 
+          error: "An error occurred. Please try again." });
+    }
+};
+
+export const logoutUser = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout error:", err);
+            return res.status(500).send("Internal Server Error");
+        }
+        res.redirect("/users/login");
+    });
+};
