@@ -20,7 +20,7 @@ export const createUser = async (req, res) => {
     try {
       const { firstName, lastName, email, password } = req.body;
       await User.create({ firstName, lastName, email, password }); 
-      res.redirect("/users"); 
+      res.redirect("/"); 
     } catch (error) {
       console.error("Error creating user:", error);
       res.status(500).send("Internal Server Error");
@@ -90,7 +90,10 @@ export const loginUser = async (req, res) => {
               error: "Invalid email or password" });
         }
 
-        req.session.user = { id: user.id, email: user.email };
+        req.session.user = { 
+          id: user.id, 
+          name: `${user.firstName} ${user.lastName}`, 
+          email: user.email };
         res.redirect("/");
     } catch (error) {
         console.error("Login error:", error);
@@ -105,6 +108,6 @@ export const logoutUser = (req, res) => {
             console.error("Logout error:", err);
             return res.status(500).send("Internal Server Error");
         }
-        res.redirect("/users/login");
+        res.redirect("/");
     });
 };

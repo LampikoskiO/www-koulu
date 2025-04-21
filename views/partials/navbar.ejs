@@ -1,16 +1,18 @@
 <nav class="navbar">
     <div class="nav-left">
-      <a href="/index">Home</a>
+      <a href="/">Home</a>
       <a href="/about">About</a>
-      <a href="/dev">Dev</a>
+        <!-- Tarvitaanko tätä? <a href="/dev">Dev</a> -->
       <a href="/photos">Photos</a>
     </div>
     <div class="nav-right">
       <% if (user) { %>
         <span>Welcome, <%= user.name %></span>
-        <a href="/logout">Logout</a>
-      <% } else { %>
-        <a href="/login">Login</a>
+        <form action="/users/logout" method="POST" style="display: inline;">
+          <button type="submit" class="logout-button">Logout</button>
+        </form>
+        <% } else { %>
+        <a href="/users/login">Login</a>
       <% } %>
     </div>
   </nav>
