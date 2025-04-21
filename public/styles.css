@@ -18,6 +18,26 @@ body {
     }
   }
 
-  .container {
-    padding: 0% 10%;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 1rem;
+    color: white;
   }
+  
+  .navbar a {
+    color: white;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+  
+  .nav-left a,
+  .nav-right a {
+    margin-right: 10px;
+  }
+  
+  .navbar span {
+    margin-right: 10px;
+  }
+  
