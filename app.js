@@ -5,6 +5,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sequelize from "./db.js"; // Sequelize config
 import catRoutes from "./routes/catRoutes.js";
+import errorRoutes from "./routes/errorRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import homeRoutes from "./routes/homeRoutes.js";
+import methodOverride from "method-override";
+import session from 'express-session';
+import { pageNotFoundError, internalServerError } from "./controllers/errorController.js";
 
 dotenv.config();
 
@@ -25,6 +31,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // API routes
 app.use("/api", catRoutes);
+
+app.use("/users", userRoutes);
+app.use("/", homeRoutes);
 
 // Page routes
 app.get("/", (req, res) => {

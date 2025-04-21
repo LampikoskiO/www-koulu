@@ -12,7 +12,7 @@ export const internalServerError = (error, req, res, next) => {
   let errorCode = httpStatus.INTERNAL_SERVER_ERROR;
   console.log(`ERROR occurred: ${error.stack}`);
   res.status(errorCode);
-  res.send(`${errorCode} | Sorry, our application on a break!`);
+  res.send(`${errorCode} | Sorry, our application is on a break!`);
 };
 
 export const errorController = {
