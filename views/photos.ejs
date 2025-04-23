@@ -11,9 +11,13 @@
   <form action="/photos" method="POST">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" required>
+    <br />
+    <br />
     <label for="imageUrl">Image URL:</label>
     <input type="text" id="imageUrl" name="imageUrl" required>
-    <button type="submit">Add Photo</button>
+    <br />
+    <br />
+    <button type="submit" class="button">Add Photo</button>
   </form>
 
   <!-- Show all photos -->
@@ -24,7 +28,7 @@
         <h3><%= photo.title %></h3>
         <img src="<%= photo.imageUrl %>" alt="<%= photo.title %>" style="max-width: 300px;">
         <form action="/photos/<%= photo.id %>?_method=DELETE" method="POST">
-          <button type="submit">Delete</button>
+          <button type="submit" class="button">Delete</button>
          </form> 
       </li>
     <% }) %>

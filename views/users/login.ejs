@@ -1,4 +1,8 @@
-<div class="data-form">
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/navbar') %>
+
+    <link rel="stylesheet" href="/styles.css"><div class="data-form">
     <form action="/users/login" method="POST">
       <h2>Login:</h2>
       
@@ -8,6 +12,7 @@
       <label for="inputPassword">Password</label>
       <input class="form-control" type="password" name="password" id="inputPassword" placeholder="Password" required>
       
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      <button class="button" type="submit">Login</button>
     </form>
   </div>
+  </html>
