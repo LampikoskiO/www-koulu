@@ -4,6 +4,7 @@ import Photo from "../models/photo.js";
 export const getAllPhotos = async (req, res) => {
     try {
         const photos = await Photo.findAll();
+        console.log("Photos fetched:", photos);
         res.render("photos", { title: "Photos", photos });
     } catch (error) {
         console.error("Error fetching photos:", error);
