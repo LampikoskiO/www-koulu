@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <%- include('../partials/navbar') %>
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
 
     <link rel="stylesheet" href="/styles.css"><div class="data-form">
     <form action="/users/login" method="POST">

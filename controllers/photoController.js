@@ -15,6 +15,9 @@ export const getAllPhotos = async (req, res) => {
 // Add a new photo
 export const addPhoto = async (req, res) => {
     try {
+        if (!req.session.user) {
+            return res.redirect("/users/login?error=You must be logged in to add a photo");
+        }
         const { title, imageUrl } = req.body;
         const userId = req.session.user.id; 
         await Photo.create({ title, imageUrl, userId });       
@@ -29,7 +32,7 @@ export const addPhoto = async (req, res) => {
 export const deletePhoto = async (req, res) => {
     try {
         if (!req.session.user) {
-            return res.status(401).send("You must be logged in to delete a photo");
+            return res.redirect("/users/login?error=You must be logged in to delete a photo");
         }
 
         const { id } = req.params;
