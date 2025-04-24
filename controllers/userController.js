@@ -76,7 +76,8 @@ export const deleteUser = async (req, res) => {
     };
 
 export const renderLoginPage = (req, res) => {
-    res.render("users/login", { title: "Login" });
+  const error = req.query.error;
+    res.render("users/login", { title: "Login", error });
 };
 
 export const loginUser = async (req, res) => {
